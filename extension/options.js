@@ -18,7 +18,7 @@ async function load() {
     textarea.value = (obj[KEY] || DEFAULT_PROMPT).trim();
   } catch (e) {
     console.error(e);
-    showStatus("読み込みに失敗しました", true);
+    showStatus("Failed to load", true);
   }
 }
 
@@ -31,10 +31,10 @@ form.addEventListener("submit", async (e) => {
   const value = (textarea.value || "").trim();
   try {
     await save(value || DEFAULT_PROMPT);
-    showStatus("保存しました");
+    showStatus("Saved");
   } catch (e) {
     console.error(e);
-    showStatus("保存に失敗しました", true);
+    showStatus("Failed to save", true);
   }
 });
 
@@ -42,12 +42,11 @@ resetBtn.addEventListener("click", async () => {
   try {
     textarea.value = DEFAULT_PROMPT;
     await save(DEFAULT_PROMPT);
-    showStatus("初期化しました");
+    showStatus("Reset to default");
   } catch (e) {
     console.error(e);
-    showStatus("初期化に失敗しました", true);
+    showStatus("Failed to reset", true);
   }
 });
 
 load();
-
