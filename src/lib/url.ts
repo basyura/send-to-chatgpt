@@ -8,8 +8,8 @@ export function buildChatGptUrl(prompt: string, pageUrl: string): string {
 }
 
 /**
- * 現在のタブ URL が ChatGPT 起動対象として妥当かを判定。
- * 条件: 有効な http/https URL かつ hostname が localhost ではない。
+ * Validate whether the current tab URL is a valid target for ChatGPT.
+ * Rules: allow only http/https and exclude localhost and private IP ranges.
  */
 export function isValidPageUrl(url: string | undefined | null): boolean {
   if (!url) return false;

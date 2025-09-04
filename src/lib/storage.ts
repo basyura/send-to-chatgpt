@@ -6,8 +6,7 @@ export async function getUserPrompt(defaultPrompt: string): Promise<string> {
     const value = (data?.[PROMPT_KEY] ?? defaultPrompt) as string;
     return (value || defaultPrompt).trim();
   } catch {
-    // 失敗時はデフォルト
+    // Fallback to default on failure
     return defaultPrompt;
   }
 }
-
