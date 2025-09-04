@@ -41,3 +41,34 @@
 - Avoid `unsafe-eval`; prefer message passing between background/content.
 - Encode user URLs safely when generating the ChatGPT query.
 
+## Commit Message Policy (Conventional Commits)
+- Language: English for subject and body.
+- Format: `type(scope): subject` (imperative, ≤50 chars, no period).
+- Types: `feat|fix|docs|refactor|perf|test|build|ci|chore|style|revert`.
+- Scope: `options|background|content|popup|lib|build|manifest` (extend as needed).
+- Body: blank line after subject, use bullets; ~72 chars per line.
+- Footer: link issues at the end, e.g., `Refs: #123` / `Closes: #123`.
+- Granularity: split logically independent changes (manifest, build, logic).
+- Fixups: prefer `--amend`; if history is shared already, `rebase -i` with `reword`.
+
+### CLI rules for newline‑safe bodies
+- Use `$'…'` with real newlines or `-F -` (heredoc). Do not embed literal `\n`.
+
+Examples
+
+```
+git commit -m $'feat(options): add options page and saved prompt support\n\n- manifest: add options_ui and storage permission\n- background: read user prompt from chrome.storage\n- build(dev): watch and copy extension/ static to dist\n- chore: add storage util (getUserPrompt)'
+```
+
+```
+git commit --amend -m $'fix(url): encode page URL safely\n\n- escape newlines and spaces\n- add unit test for unicode\n\nCloses: #123'
+```
+
+```
+git commit -F - <<'MSG'
+feat(build): watch and copy static assets in dev
+
+- mirror extension/ to dist/ on change
+- debounce copy to avoid bursts
+MSG
+```
