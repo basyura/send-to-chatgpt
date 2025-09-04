@@ -2,14 +2,6 @@ import { DEFAULT_PROMPT } from "../lib/config";
 import { buildChatGptUrl, isValidPageUrl } from "../lib/url";
 import { getUserPrompt } from "../lib/storage";
 
-chrome.runtime.onInstalled.addListener(() => {
-  chrome.contextMenus.create({
-    id: "chatgpt-sumup",
-    title: "Summarize with ChatGPT",
-    contexts: ["page", "selection", "link"]
-  });
-});
-
 async function openChatGptForTab(tab?: chrome.tabs.Tab) {
   if (!tab || !tab.url) return;
   if (!isValidPageUrl(tab.url)) return;
