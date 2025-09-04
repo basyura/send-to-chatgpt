@@ -68,6 +68,10 @@ Loading into Chrome:
 ## Permissions & Privacy
 
 - Permissions: `activeTab`, `contextMenus`, `storage`
+- Rationale:
+  - `activeTab`: read the current tab URL when you invoke the action
+  - `contextMenus`: add the right‑click menu item
+  - `storage`: persist your default prompt in `chrome.storage.sync`
 - No content scripts read page contents
 - Navigates to `chatgpt.com` only
 
@@ -80,3 +84,19 @@ Loading into Chrome:
 
 - Pages on `localhost` or private IP ranges are ignored
 - Non‑`http/https` schemes (e.g., `chrome://`) are not supported
+
+## Compatibility
+
+- Chrome (Manifest V3). Other Chromium‑based browsers may work but are not
+  officially tested.
+
+## Troubleshooting
+
+- Context menu not showing: close/reopen the tab or reload the extension from
+  chrome://extensions after loading `dist/`.
+- Nothing happens on click: ensure the page URL is `http/https` and not
+  `localhost` or a private IP; see Known Limitations.
+- Options not saved: verify `chrome.storage` is available and try again; on some
+  profiles sync may be disabled.
+- Stale build: run `npm run dev` (or `npm run build`) again and reload the
+  unpacked extension.

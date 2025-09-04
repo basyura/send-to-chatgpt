@@ -37,7 +37,8 @@
 
 ## Security & Configuration Tips
 - Do not store secrets or tokens in the repo or `manifest.json`.
-- Keep permissions minimal in `manifest.json` (only needed `host_permissions`).
+- Keep permissions minimal in `manifest.json`; avoid `host_permissions` and rely
+  on `activeTab` where possible.
 - Avoid `unsafe-eval`; prefer message passing between background/content.
 - Encode user URLs safely when generating the ChatGPT query.
 
@@ -72,3 +73,25 @@ feat(build): watch and copy static assets in dev
 - debounce copy to avoid bursts
 MSG
 ```
+
+## Build & Entry Points
+- Bundler: esbuild (`scripts/build.mjs`). Outputs to `dist/`.
+- Background entry: `src/background/index.ts` → `dist/index.js` (keep manifest
+  `background.service_worker` in sync).
+- Static copy: `extension/` is mirrored to `dist/` (manifest, options assets,
+  icons). Watch mode debounces rapid changes.
+- Adding new scripts: extend `entryPoints` in `scripts/build.mjs` (e.g.
+  `content/content` or `popup/index`) and reference the emitted paths from the
+  manifest/UI as needed.
+
+## Storage & Config Conventions
+- Default prompt constant: `DEFAULT_PROMPT` in `src/lib/config.ts`.
+- Storage key: `userPrompt`. Keep it consistent between
+  `src/lib/storage.ts` and `extension/options.js`.
+
+## PR Checklist
+- Build passes: `npm run build` produces a working `dist/`.
+- Lint/tests: `npm run lint`, `npm test` (cover `src/lib`).
+- Manifest review: permissions remain minimal; background script path correct.
+- Screenshots or a short clip for user‑visible changes.
+- Conventional Commit messages per policy above.
