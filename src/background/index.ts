@@ -1,5 +1,6 @@
 import { DEFAULT_PROMPT } from "../lib/config";
 import { buildChatGptUrl } from "../lib/url";
+import { getUserPrompt } from "../lib/storage";
 
 chrome.runtime.onInstalled.addListener(() => {
   chrome.contextMenus.create({
@@ -11,7 +12,8 @@ chrome.runtime.onInstalled.addListener(() => {
 
 async function openChatGptForTab(tab?: chrome.tabs.Tab) {
   if (!tab || !tab.url) return;
-  const url = buildChatGptUrl(DEFAULT_PROMPT, tab.url);
+  const prompt = await getUserPrompt(DEFAULT_PROMPT);
+  const url = buildChatGptUrl(prompt, tab.url);
   await chrome.tabs.create({ url });
 }
 
@@ -23,4 +25,3 @@ chrome.action.onClicked.addListener(async (tab) => {
 chrome.contextMenus.onClicked.addListener(async (_info, tab) => {
   await openChatGptForTab(tab);
 });
-

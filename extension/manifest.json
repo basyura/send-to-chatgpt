@@ -10,5 +10,9 @@
     "service_worker": "index.js",
     "type": "module"
   },
-  "permissions": ["activeTab", "contextMenus"]
+  "options_ui": {
+    "page": "options.html",
+    "open_in_tab": true
+  },
+  "permissions": ["activeTab", "contextMenus", "storage"]
 }
