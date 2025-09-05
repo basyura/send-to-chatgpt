@@ -1,6 +1,6 @@
 # SendToChatGPT 
 
-![App Icon](assets/icons/icon-128.png)
+![App Icon](assets/icons/icon.png)
 
 Chrome extension that opens ChatGPT (chatgpt.com) with your chosen prompt
 followed by the current tab URL. You can trigger it from the toolbar button.
