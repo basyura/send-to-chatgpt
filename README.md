@@ -1,8 +1,10 @@
 # ChatGPT Summarize 
 
+![App Icon](https://github.com/basyura/chatgpt-summarize/blob/main/assets/icons/icon.png)
+
 Chrome extension that opens ChatGPT (chatgpt.com) with your chosen prompt
-followed by the current tab URL. You can trigger it from the toolbar button or
-the page context menu. The default prompt is configurable in the Options page.
+followed by the current tab URL. You can trigger it from the toolbar button.
+The prompt is configurable in the Options page.
 
 ## Generated URL
 
@@ -21,7 +23,7 @@ and sets it to the `q` parameter.
 ## Usage
 
 1) Open any web page
-2) Click the extension icon (or right‑click → “Summarize with ChatGPT”)
+2) Click the extension icon
 3) ChatGPT opens with the prompt first and the page URL on the next line
 
 Change the prompt: open the extension’s Options and save your preferred text
