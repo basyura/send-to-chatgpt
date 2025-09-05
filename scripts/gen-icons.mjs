@@ -176,41 +176,31 @@ function drawIcon(size) {
   const radius = Math.round((x1 - x0) * 0.27);
   fillRoundedRect(buf, w, h, x0, y0, x1, y1, radius, PURPLE);
 
-  // White chat bubble inside
-  const inset = Math.round(size * 0.20);
-  const bx0 = x0 + inset;
-  const by0 = y0 + inset * 0.8;
-  const bx1 = x1 - inset * 0.6;
-  const by1 = y1 - inset * 0.9;
-  const br = Math.max(2, Math.round(size * 0.12));
-  fillRoundedRect(buf, w, h, bx0, by0, bx1, by1, br, WHITE);
-  // Tail at bottom-left
-  const tailW = Math.max(2, Math.round(size * 0.16));
-  const tailH = Math.max(2, Math.round(size * 0.12));
-  fillTriangle(
-    buf,
-    w,
-    h,
-    bx0 + br * 0.6,
-    by1 - br * 0.4,
-    bx0 + br * 0.6 + tailW,
-    by1 - br * 0.4,
-    bx0 + br * 0.6,
-    by1 - br * 0.4 + tailH,
-    WHITE
-  );
+  // No speech bubble: define inner content area on purple card
+  const innerPadX = Math.round(size * 0.18);
+  const innerPadY = Math.round(size * 0.20);
+  const ix0 = x0 + innerPadX;
+  const iy0 = y0 + innerPadY;
+  const ix1 = x1 - innerPadX;
+  const iy1 = y1 - innerPadY;
 
-  // Text lines inside bubble (purple)
-  const linePadX = Math.round((bx1 - bx0) * 0.12);
-  const linePadY = Math.round((by1 - by0) * 0.18);
-  const lineGap = Math.max(1, Math.round((by1 - by0) * 0.16));
-  const lineH = Math.max(1, Math.round((by1 - by0) * 0.12));
+  // Text lines — centered horizontally within inner content area
+  const linePadX = Math.round((ix1 - ix0) * 0.08);
+  const linePadY = Math.round((iy1 - iy0) * 0.12);
+  const lineGap = Math.max(1, Math.round((iy1 - iy0) * 0.16));
+  const lineH = Math.max(1, Math.round((iy1 - iy0) * 0.12));
+  const innerL = ix0 + linePadX;
+  const innerR = ix1 - linePadX;
+  const innerW = Math.max(1, innerR - innerL);
+  const cx = (innerL + innerR) / 2; // center within purple card
+  const factors = [0.78, 0.92, 0.86];
   for (let i = 0; i < 3; i++) {
-    const ly0 = by0 + linePadY + i * (lineH + lineGap);
+    const ly0 = Math.round(iy0 + linePadY + i * (lineH + lineGap));
     const ly1 = ly0 + lineH;
-    const lx0 = bx0 + linePadX;
-    const lx1 = bx1 - linePadX * (i === 0 ? 0.2 : i === 1 ? 0.1 : 0); // first line shorter
-    fillRoundedRect(buf, w, h, lx0, ly0, lx1, ly1, Math.max(1, Math.round(lineH / 2)), PURPLE);
+    const lw = Math.max(1, Math.round(innerW * factors[i]));
+    const lx0 = Math.round(cx - lw / 2);
+    const lx1 = Math.round(cx + lw / 2);
+    fillRoundedRect(buf, w, h, lx0, ly0, lx1, ly1, Math.max(1, Math.round(lineH / 2)), WHITE);
   }
 
   return buf;
@@ -235,4 +225,3 @@ main().catch((e) => {
   console.error(e);
   process.exit(1);
 });
-
