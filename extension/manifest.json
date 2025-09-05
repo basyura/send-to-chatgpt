@@ -1,6 +1,6 @@
 {
   "manifest_version": 3,
-  "name": "ChatGPT SumUp",
+  "name": "ChatGPT Summarize",
   "version": "0.1.0",
   "description": "Open ChatGPT with a summarize prompt and the current tab URL.",
   "icons": {

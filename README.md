@@ -1,4 +1,4 @@
-# ChatGPT SumUp
+# ChatGPT Summarize 
 
 Chrome extension that opens ChatGPT (chatgpt.com) with your chosen prompt
 followed by the current tab URL. You can trigger it from the toolbar button or
