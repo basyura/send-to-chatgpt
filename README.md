@@ -1,4 +1,4 @@
-# ChatGPT Summarize 
+# SendToChatGPT 
 
 ![App Icon](assets/icons/icon-128.png)
 
