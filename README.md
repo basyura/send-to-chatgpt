@@ -1,6 +1,6 @@
 # ChatGPT Summarize 
 
-![App Icon](https://github.com/basyura/chatgpt-summarize/blob/main/assets/icons/icon.png)
+![App Icon](assets/icons/icon-128.png)
 
 Chrome extension that opens ChatGPT (chatgpt.com) with your chosen prompt
 followed by the current tab URL. You can trigger it from the toolbar button.
@@ -8,17 +8,21 @@ The prompt is configurable in the Options page.
 
 ## Generated URL
 
-- Format: `https://chatgpt.com/?q={Prompt}%0A{EncodedURL}` (joined by newline)
+- Format: `https://chatgpt.com/?q=encodeURIComponent(Prompt + '\n' + PageURL)`
 - Example: `https://chatgpt.com/?q=Summarize%0Ahttps%3A%2F%2Fexample.com%2Fpost`
 
-Internally the extension builds `prompt + "\n" + pageUrl`, then URL‑encodes it
-and sets it to the `q` parameter.
+Internally the extension builds `prompt + "\n" + pageUrl`, then URL‑encodes the
+entire string and sets it to the `q` parameter.
 
 ## Features
 
-- Launch from toolbar action or page context menu
+- Launch from toolbar action
 - Configurable default prompt via Options (`chrome.storage.sync`)
 - URL validation: only `http/https`; excludes `localhost` and private IPs
+
+## Prerequisites
+
+- Node.js 18+ (ESM scripts and APIs are使用されています)
 
 ## Usage
 
@@ -53,9 +57,11 @@ Loading into Chrome:
 
 ## Project Structure
 
-- `extension/manifest.json`: Manifest v3 (background is `dist/index.js`)
+- `extension/manifest.json`: Manifest v3 (background is `index.js` in `dist/`;
+  esbuild outputs `dist/index.js`)
 - `extension/options.html|options.js`: Options UI
 - `src/background/`: service worker (entry `index.ts`)
+- `src/content/`: reserved for future use (currently unused)
 - `src/lib/`: shared helpers (URL builder, config, storage)
 - `assets/icons/`: icons
 - `dist/`: build output (load this in Chrome)
@@ -94,8 +100,6 @@ Loading into Chrome:
 
 ## Troubleshooting
 
-- Context menu not showing: close/reopen the tab or reload the extension from
-  chrome://extensions after loading `dist/`.
 - Nothing happens on click: ensure the page URL is `http/https` and not
   `localhost` or a private IP; see Known Limitations.
 - Options not saved: verify `chrome.storage` is available and try again; on some
