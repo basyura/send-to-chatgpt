@@ -2,7 +2,7 @@
   "name": "send-to-chatgpt",
   "version": "0.1.0",
   "private": true,
-  "description": "Chrome extension to open ChatGPT with a summarize prompt and the current tab URL.",
+  "description": "Chrome extension to open ChatGPT with a prompt and the current tab URL.",
   "type": "module",
   "scripts": {
     "dev": "node scripts/build.mjs --watch",

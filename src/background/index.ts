@@ -15,6 +15,3 @@ chrome.action.onClicked.addListener(async (tab) => {
   await openChatGptForTab(tab);
 });
 
-chrome.contextMenus.onClicked.addListener(async (_info, tab) => {
-  await openChatGptForTab(tab);
-});

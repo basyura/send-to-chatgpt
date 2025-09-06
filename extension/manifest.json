@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "SendToChatGPT",
   "version": "0.1.0",
-  "description": "Open ChatGPT with a summarize prompt and the current tab URL.",
+  "description": "Open ChatGPT with a prompt and the current tab URL.",
   "icons": {
     "16": "icons/icon-16.png",
     "32": "icons/icon-32.png",
