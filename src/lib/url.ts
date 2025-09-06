@@ -45,13 +45,15 @@ function isLocalIp(host: string): boolean {
   }
 
   // IPv6 literal
-  if (host.includes(':')) {
-    // Loopback
-    if (host === '::1' || host === '0:0:0:0:0:0:0:1') return true;
+  if (host.includes(':') || (host.startsWith('[') && host.endsWith(']'))) {
+    // Strip brackets if present (Node URL.hostname may include [ ] for IPv6)
+    const ip6 = host.startsWith('[') && host.endsWith(']') ? host.slice(1, -1) : host;
+    // Loopback ::1 / 0:0:0:0:0:0:0:1
+    if (ip6 === '::1' || ip6 === '0:0:0:0:0:0:0:1') return true;
     // Link-local fe80::/10
-    if (host.startsWith('fe8') || host.startsWith('fe9') || host.startsWith('fea') || host.startsWith('feb')) return true;
+    if (ip6.startsWith('fe8') || ip6.startsWith('fe9') || ip6.startsWith('fea') || ip6.startsWith('feb')) return true;
     // Unique local fc00::/7 (fc00::/8 and fd00::/8)
-    if (host.startsWith('fc') || host.startsWith('fd')) return true;
+    if (ip6.startsWith('fc') || ip6.startsWith('fd')) return true;
     return false;
   }
 
