@@ -1,6 +1,6 @@
-import { DEFAULT_PROMPT } from "../lib/config";
-import { buildChatGptUrl, isValidPageUrl } from "../lib/url";
-import { getUserPrompt } from "../lib/storage";
+import { DEFAULT_PROMPT } from '../lib/config';
+import { buildChatGptUrl, isValidPageUrl } from '../lib/url';
+import { getUserPrompt } from '../lib/storage';
 
 async function openChatGptForTab(tab?: chrome.tabs.Tab) {
   if (!tab || !tab.url) return;

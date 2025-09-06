@@ -92,7 +92,10 @@ function fillTriangle(buf, w, h, ax, ay, bx, by, cx, cy, color) {
       const w0 = (bx - ax) * (py - ay) - (by - ay) * (px - ax);
       const w1 = (cx - bx) * (py - by) - (cy - by) * (px - bx);
       const w2 = (ax - cx) * (py - cy) - (ay - cy) * (px - cx);
-      if ((w0 >= 0 && w1 >= 0 && w2 >= 0 && area > 0) || (w0 <= 0 && w1 <= 0 && w2 <= 0 && area < 0)) {
+      if (
+        (w0 >= 0 && w1 >= 0 && w2 >= 0 && area > 0) ||
+        (w0 <= 0 && w1 <= 0 && w2 <= 0 && area < 0)
+      ) {
         setPixel(buf, w, x, y, color);
       }
     }
@@ -178,7 +181,7 @@ function drawIcon(size) {
 
   // No speech bubble: define inner content area on purple card
   const innerPadX = Math.round(size * 0.18);
-  const innerPadY = Math.round(size * 0.20);
+  const innerPadY = Math.round(size * 0.2);
   const ix0 = x0 + innerPadX;
   const iy0 = y0 + innerPadY;
   const ix1 = x1 - innerPadX;

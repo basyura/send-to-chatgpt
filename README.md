@@ -1,4 +1,4 @@
-# SendToChatGPT 
+# SendToChatGPT
 
 ![App Icon](assets/icons/icon.png)
 
@@ -26,9 +26,9 @@ entire string and sets it to the `q` parameter.
 
 ## Usage
 
-1) Open any web page
-2) Click the extension icon
-3) ChatGPT opens with the prompt first and the page URL on the next line
+1. Open any web page
+2. Click the extension icon
+3. ChatGPT opens with the prompt first and the page URL on the next line
 
 Change the prompt: open the extension’s Options and save your preferred text
 (default: `Summarize`).
@@ -43,9 +43,9 @@ Change the prompt: open the extension’s Options and save your preferred text
 
 Loading into Chrome:
 
-1) Run `npm run build` or `npm run dev`
-2) Chrome → Extensions → Enable Developer mode → “Load unpacked”
-3) Select the `dist/` directory
+1. Run `npm run build` or `npm run dev`
+2. Chrome → Extensions → Enable Developer mode → “Load unpacked”
+3. Select the `dist/` directory
 
 ## Scripts
 

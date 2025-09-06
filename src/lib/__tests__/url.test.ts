@@ -12,4 +12,3 @@ describe('buildChatGptUrl', () => {
     expect(decoded).toBe(`${prompt}\n${page}`);
   });
 });
-

@@ -1,4 +1,4 @@
-export const PROMPT_KEY = "userPrompt" as const;
+export const PROMPT_KEY = 'userPrompt' as const;
 
 export async function getUserPrompt(defaultPrompt: string): Promise<string> {
   try {
