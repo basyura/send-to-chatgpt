@@ -22,7 +22,7 @@ entire string and sets it to the `q` parameter.
 
 ## Prerequisites
 
-- Node.js 18+ (ESM scripts and APIs are使用されています)
+- Node.js 18+ (ESM scripts and APIs are used)
 
 ## Usage
 
