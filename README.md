@@ -1,5 +1,9 @@
 # SendToChatGPT
 
+
+chrome ウェブストア
+- https://chromewebstore.google.com/detail/sendtochatgpt/khkabkiljmlohgklohabehfafabgnhfe
+
 ![App Icon](assets/icons/icon.png)
 
 Chrome extension that opens ChatGPT (chatgpt.com) with your chosen prompt
